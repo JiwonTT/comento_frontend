@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+img {
+    width: 180px;
+    height: 180px;
+    border-radius: 20%;
+    object-fit: cover;
+    margin: 20px 0;
+}
+
+h1 {
+    text-align: center;
+    color: #3779fc;
+}
+
+h2 {
+    text-align: center;
+    color: #c437fc;
+}
+
+p {
+    line-height: 1.6;
+    color: #666;
+}
+
+.hobby-list {
+    list-style: square;
+    padding-left: 20px;
+}
