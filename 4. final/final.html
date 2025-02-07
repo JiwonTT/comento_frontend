@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>final</title>
+        <script>
+            let users=[];
+            function idCheck(id){
+                return users.some(user=>user.id === id);
+
+            }
+            function register() {
+                event.preventDefault();
+                const id=document.getElementById("id").value;
+                const pw=document.getElementById("password").value;
+                const mk=document.getElementById("job").value;
+                const me=document.getElementById("message");
+
+                if (idCheck(id)) {
+                    me.innerText="이미 존재하는 아이디입니다. ";
+                    return;
+                }
+                if (pw.length < 4 || pw.length > 8) {
+                    me.innerText="비밀번호는 4 ~ 8자리로 입력해주세요. ";
+                    return;
+                }
+                users.push({id, pw, mk});
+                message.innerText="✅ 가입이 완료되었습니다";
+                document.getElementById("id").value = "";
+                document.getElementById("password").value = "";
+            }
+
+            function admin(){ //이벤트=관리자모드
+                const a = prompt("관리자 비밀번호 입력:");
+                if(a === "00"){
+                    let userList= "📋[유저 목록]\n";
+                    if (users.length === 0) {
+                        userList+="회원 없음";
+                    } else {
+                        users.forEach((user,index)=>{
+                            userList+=`${index+1}. 아이디: ${user.id}, 비밀번호: ${user.pw}, 마케팅 여부: ${user.mk} \n`; // 
+                        });
+                    }
+                    alert(userList);
+                }
+                else{
+                    alert ("❌ 틀렸습니다.")
+                }
+            }
+        </script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h3>회원가입 양식</h3>
+        <form id="signupForm">
+            <div>
+                <label for="id">아이디:</label>
+                <input type="text" id="id" name="id" placeholder="아이디를 입력하세요"><br><br>
+                <label for="password">비밀번호:</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" title="비밀번호는 4~8자리여야 합니다." required pattern=".{4,8}"><br><br>
+                <label for="job">마케팅 컨텐츠 안내:</label>
+                <select name="job" id="job">
+                    <option value="message">메세지</option>
+                    <option value="sns,e-mail">SNS,이메일</option>
+                    <option value="No">필요없음</option>
+                </select>
+                <br><br>
+                <button onclick="register(event)" type="button">가입</button>
+                <button type="reset">초기화</button>
+                <hr>
+                <p>관리자 모드</p>
+                <button type="button" onclick="admin()">관리자 확인</button>
+                <p id="message"></p>
+            </div>
+        </form>
+        <div>
+            <h4>To Do List</h4>
+            
+        </div>
+    </body>
+</html>
